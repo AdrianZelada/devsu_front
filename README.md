@@ -1,27 +1,37 @@
 # SudevFrontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.4.
+### Prueba para la postulaciona devsu
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Instalacion: 
 
-## Code scaffolding
+Clonamos el repositorio.
+```
+$ git clone https://github.com/AdrianZelada/devsu_front.git
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Ingresamos a la carpeta e instalamos dependecias
+```
+$ cd devsu_front
 
-## Build
+$ npm i
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Ejecucion
 
-## Running unit tests
+La aplicacion se debe de ejecutar con el siguiente comando
+```
+$ ng serve -o 
+```
+Esto abrira un pestania en el navegador en la ruta http://localhost:4200, desde esta ruta podra ingresa y ver las funcionalidades del aplicativo
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+Para ejecutar las pruebas unitarias ser debe realizar el siguiente comando
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```
+$ ng test
+```
 
-## Further help
+Nota: Cumpli con las funcionalidades plantesadas en la prueba, cumpliendo los principios SOLID, pero por falta de tiempo no pude concluir con todas las pruebas unitarias :(, espero puedan comprender y dar una revision a m codigo en detalle. 
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Muchas gracias
