@@ -16,8 +16,8 @@ export class TableComponent implements OnInit, AfterContentChecked {
     this.renderTable();
   }
 
-  private _data: Array<any>= []; 
-  public currentData: Array<any>= [];  
+  private _data: Array<any>= [];
+  public currentData: Array<any>= [];
   @Input() columns: Array<Header> = [];
   @Input() dimension: Array<number> = [5,10,15];
   @Input() defaultSize: number = 5;
@@ -28,10 +28,11 @@ export class TableComponent implements OnInit, AfterContentChecked {
   public sizePage: number = 0;
   public page: number = 1;
   constructor(
+
     private changeDetector: ChangeDetectorRef,
   ) {}
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
     this.sizePage = this.defaultSize;
   }
 
@@ -39,30 +40,30 @@ export class TableComponent implements OnInit, AfterContentChecked {
     this.changeDetector.detectChanges();
   }
 
-  search(text: String) {    
+  search(text: String) {
     this.text = text;
     this.renderTable();
   }
 
   sizeFn(size: number) {
-    this.sizePage= size;    
+    this.sizePage= size;
     this.renderTable();
   }
 
-  pageFn(page: number) {    
+  pageFn(page: number) {
     this.page = page;
     this.renderTable();
   }
 
-  renderTable() {    
+  renderTable() {
     if(this.sizePage != 0) {
       const start = ((this.page-1)* this.sizePage);
       const end = start + (+this.sizePage);
       const response = this._data.filter((item:any) => {
         let sw = false;
-        this.filterFields.forEach((key: any)=>{          
+        this.filterFields.forEach((key: any)=>{
           const textField = item[key].toLowerCase();
-          if(textField.includes(this.text.toLowerCase())){            
+          if(textField.includes(this.text.toLowerCase())){
             sw=true;
           }
         });
@@ -71,6 +72,6 @@ export class TableComponent implements OnInit, AfterContentChecked {
       this.sizeTable = response.length;
       this.currentData = response.slice(start, end);
     }
-    
+
   }
 }

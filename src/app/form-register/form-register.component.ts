@@ -18,6 +18,8 @@ export class FormRegisterComponent implements OnInit {
   public data: any= {};
   public idExist: boolean = false;
 
+  public dateRealeseEdit: string;
+
   constructor(
     private fb: FormBuilder,
     private productService: ProductService,
@@ -31,6 +33,7 @@ export class FormRegisterComponent implements OnInit {
         logo: new FormControl("", [Validators.required]),
         description: new FormControl("", [Validators.required, Validators.minLength(10), Validators.maxLength(200)]),
         date_release: new FormControl("", [Validators.required, this.dateRangeValidator]),
+        // date_release: new FormControl("", [Validators.required]),
         date_revision: new FormControl("", [Validators.required]),
       });
 
@@ -44,6 +47,8 @@ export class FormRegisterComponent implements OnInit {
             const dateRelease = DateUtil.dateToString(data.date_release);
 
             const dateRevision = DateUtil.dateToString(data.date_revision);
+
+            this.dateRealeseEdit = dateRelease;
             this.isEdit = true;
             this.formGroup.controls['id'].disable();
             this.formGroup.setValue({
@@ -118,11 +123,22 @@ export class FormRegisterComponent implements OnInit {
   } | null => {
     let date: any = this.formGroup && this.formGroup.controls['date_release'].value;
     if(date) {
-      date = date.split('-');
-      const auxDate = new Date();
-      const currentDate = new Date(auxDate.getFullYear(), auxDate.getMonth(), auxDate.getDate());
-      const formDate = new Date(date[0], (+date[1]-1),date[2]);
-      return formDate < currentDate ?  { invalidRange: date } : null;
+      if(this.isEdit) {
+
+        date = date.split('-');
+        const dataAux = this.dateRealeseEdit.split('-');
+        const auxDate = new Date();
+        const currentDate = new Date(parseInt(dataAux[0]), (+dataAux[1]-1), +dataAux[2]);
+        const formDate = new Date(date[0], (+date[1]-1),date[2]);
+        return formDate < currentDate ?  { invalidRange: date } : null;
+
+      } else {
+        date = date.split('-');
+        const auxDate = new Date();
+        const currentDate = new Date(auxDate.getFullYear(), auxDate.getMonth(), auxDate.getDate());
+        const formDate = new Date(date[0], (+date[1]-1),date[2]);
+        return formDate < currentDate ?  { invalidRange: date } : null;
+      }
     }
     return null;
   };

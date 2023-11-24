@@ -28,7 +28,7 @@ describe('TableProductsComponent', () => {
       // providers: [{
       //   provide: ProductService, useValue : productServiceSpy
       // }, Router, DialogHandlerService],
-      declarations: [TableProductsComponent, FormRegisterComponent],
+      declarations: [TableProductsComponent],
       imports:[
         HttpClientTestingModule,
         TableModule,
@@ -39,14 +39,13 @@ describe('TableProductsComponent', () => {
   });
 
   beforeEach(() => {
+    fixture = TestBed.createComponent(TableProductsComponent);
     router = TestBed.inject(Router)
     location = TestBed.inject(Location)
     productService = TestBed.inject(ProductService) as jasmine.SpyObj<ProductService>;
-    fixture = TestBed.createComponent(TableProductsComponent);
     component = fixture.componentInstance;
 
     // router = TestBed.get(Router); // TestBed.inject(Router) for Angular 9+
-
     fixture.detectChanges();
   })
 

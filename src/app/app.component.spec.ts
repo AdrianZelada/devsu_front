@@ -7,17 +7,19 @@ import { ToastModule } from './components/toast/toast.module';
 import { LoaderModule } from './components/loader/loader.module';
 import { Router } from '@angular/router';
 import { Location} from '@angular/common';
+import { TableProductsComponent } from './table-products/table-products.component';
+import { FormRegisterComponent } from './form-register/form-register.component';
 
 fdescribe('AppComponent', () => {
 
   let router: Router;
   let location: Location;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [RouterTestingModule, ToastModule, LoaderModule],
       declarations: [AppComponent],
-      providers: [LoadService]})
+      providers: [LoadService]}).compileComponents();
       router = TestBed.inject(Router)
       location = TestBed.inject(Location)
     });

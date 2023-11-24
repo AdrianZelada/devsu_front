@@ -3,7 +3,7 @@
 <form  [formGroup]="formGroup">
     <div class="container-flex">
         <div class="item">
-            <label>ID</label>
+            <label>ID <span class="text-error">*</span></label>
             <input formControlName="id" class="input-form" [ngClass]="{'has-error': formGroup['controls']['id'].invalid &&
             (formGroup['controls']['id'].dirty ||
             formGroup['controls']['id'].touched)}"/>
@@ -39,7 +39,7 @@
           </div>
         </div> -->
         <div class="item">
-            <label>Nombre</label>
+            <label>Nombre <span class="text-error">*</span></label>
             <input formControlName="name" class="input-form" [ngClass]="{'has-error': formGroup['controls']['name'].invalid &&
             (formGroup['controls']['name'].dirty ||
             formGroup['controls']['name'].touched)}"/>
@@ -60,7 +60,7 @@
     </div>
     <div class="container-flex">
         <div class="item">
-            <label>Descripcion</label>
+            <label>Descripcion <span class="text-error">*</span></label>
             <input formControlName="description" class="input-form" [ngClass]="{'has-error': formGroup['controls']['description'].invalid &&
             (formGroup['controls']['description'].dirty ||
             formGroup['controls']['description'].touched)}"/>
@@ -80,7 +80,7 @@
         </div>
 
         <div class="item">
-            <label>Logo</label>
+            <label>Logo <span class="text-error">*</span></label>
             <input formControlName="logo" class="input-form" [ngClass]="{'has-error': formGroup['controls']['logo'].invalid &&
             (formGroup['controls']['logo'].dirty ||
             formGroup['controls']['logo'].touched)}"/>
@@ -95,7 +95,7 @@
     </div>
     <div class="container-flex">
         <div class="item">
-            <label>Fecha de liberacion</label>
+            <label>Fecha de liberacion <span class="text-error">*</span></label>
             <input type="date" formControlName="date_release" class="input-form" [ngClass]="{'has-error': formGroup['controls']['date_release'].invalid &&
             (formGroup['controls']['date_release'].dirty ||
             formGroup['controls']['date_release'].touched)}" />
@@ -106,18 +106,17 @@
                    La fecha de liberacion es requerida.
                 </div>
                 <div *ngIf="formGroup['controls']['date_release'].hasError('invalidRange')">
-                   La fecha debe de ser mayor o igual a la fecha actual
+                   La fecha debe de ser mayor o igual a la fecha actual <span *ngIf="isEdit"> o anteriormente guardada</span>
                 </div>
             </div>
         </div>
         <div class="item">
-            <label>Fecha de revision</label>
+            <label>Fecha de revision <span class="text-error">*</span></label>
             <input type="date" formControlName="date_revision" class="input-form" />
         </div>
     </div>
 </form>
-
-<div class="container-flex-button">
+<div class="container-flex-button" style="padding-top: 50px;">
     <button class="btn btn-second" (click)="restart()">Reiniciar</button>
     <button class="btn btn-success" [ngClass]="{'btn-disabled':!formGroup.valid}" (click)="save()" [disabled]="!formGroup.valid">Enviar</button>
 </div>
