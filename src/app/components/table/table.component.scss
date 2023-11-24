@@ -1,0 +1,28 @@
+.container-table{
+  background-color: white;
+  border-radius: 10px;
+  border: none;
+  margin-bottom: 20px;
+}
+
+.container-header{
+  background-color: rgba(158, 157, 157,0.1);
+  height: 40px;
+}
+.container-header > th{
+  padding-left: 15px;
+  padding-right: 15px;
+  border: none;
+}
+
+.container-data> td{
+  height: 60px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-bottom:1px solid rgba(158, 157, 157,0.5);
+}
+
+.footer-table{
+  display: flex;
+  justify-content: space-between
+}

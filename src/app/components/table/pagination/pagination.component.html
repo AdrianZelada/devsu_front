@@ -1,0 +1,14 @@
+<div class="pagination">
+    <a (click)="prev()"
+        class="aquo"
+        [ngClass]="{'aquo-disabled': pageSelected == 1}"
+    >&laquo;</a>
+    <a [ngClass]="{'pagination-active': pageSelected == ind+1}"
+        *ngFor="let i of Arr(items); index as ind"
+        (click)="clickPage(ind+1)"
+    >{{ind+1}}</a>    
+    <a (click)="next()"
+        class="aquo"
+        [ngClass]="{'aquo-disabled': pageSelected >= items}"
+    >&raquo;</a>
+  </div>

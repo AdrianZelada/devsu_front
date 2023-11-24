@@ -1,0 +1,47 @@
+<div>
+  <button class="f-right btn btn-success" (click)="add()"> Agregar </button>
+  <div>
+    <devsu-table
+      [columns]="columns"
+      [data]="products"
+      [defaultSize]="defaultSize"
+      [filterFields]="filterFields"
+      >
+    </devsu-table>
+    <ng-template #logoTemplate let-item="item">
+      <div >
+        <img class="size-img" [src]="item.logo" alt="" srcset="">
+      </div>
+    </ng-template>
+
+    <ng-template #dateReleaseTemplate let-item="item">
+      <div>{{ item.date_release | date: 'MM/dd/yyyy'}}</div>
+    </ng-template>
+
+    <ng-template #dateRevisionTemplate let-item="item">
+      <div>{{ item.date_revision | date: 'MM/dd/yyyy'}}</div>
+    </ng-template>
+
+    <ng-template #actionTemplate let-item="item">
+      <devsu-popover>
+        <ul class="popover-content">
+          <li class="popover-item" (click)="edit(item)">Editar</li>
+          <li class="popover-item" (click)="showConfirm(item)">Borrar</li>
+        </ul>
+        <!-- <button class="boton" (click)="edit(item)">Editar</button>
+        <button class="boton" (click)="showConfirm(item)">Borrar</button> -->
+      </devsu-popover>
+    </ng-template>
+  </div>
+
+
+  <devsu-confirm-dialog>
+    <div class="content-confirmation">
+      <p>¿Estas seguro de eliminar el producto {{itemToDelete?.name}}?</p>
+      <div class="footer-confirmation">
+        <button class="btn btn-second" (click)="cancelar()">Cancelar</button>
+        <button class="btn btn-success" (click)="delete()">Confirmar</button>
+      </div>
+    </div>
+  </devsu-confirm-dialog>
+</div>

@@ -1,0 +1,37 @@
+<devsu-search (search)="search($event)"></devsu-search>
+<table class="container-table" cellspacing="0" cellpadding="0">
+    <tr class="container-header">
+        <th *ngFor="let item of columns">
+            {{item.title}}
+        </th>
+    </tr>
+    <tr *ngFor="let item of currentData" class="container-data">
+        <td *ngFor="let column of columns">
+            <div *ngIf="column.isCustom">
+                <ng-container *ngTemplateOutlet="$any(column.template); context: {
+                    item: item
+                }">
+                </ng-container>
+            </div>
+            <div *ngIf="!column.isCustom">
+                {{item[column.field]}}
+            </div>
+        </td>
+    </tr>
+  </table>
+  <div class="footer-table">
+    <div>
+      <p class="m-0">{{sizeTable}} Resultados</p>
+    </div>
+    <devsu-pagination
+      [total]="sizeTable"
+      [sizePage]="sizePage"
+      (pageFn)="pageFn($event)"
+      *ngIf="sizeTable >= sizePage"
+    ></devsu-pagination>
+    <devsu-dimension
+      [defaultSize] ="defaultSize"
+      [dimension]="dimension"
+      (size)="sizeFn($event)">
+    </devsu-dimension>
+  </div>

@@ -1,0 +1,123 @@
+<h2 class="text-center">Formulario de Registro</h2>
+<hr>
+<form  [formGroup]="formGroup">
+    <div class="container-flex">
+        <div class="item">
+            <label>ID</label>
+            <input formControlName="id" class="input-form" [ngClass]="{'has-error': formGroup['controls']['id'].invalid &&
+            (formGroup['controls']['id'].dirty ||
+            formGroup['controls']['id'].touched)}"/>
+            <!-- {{formGroup['controls']['id'].dirty}} -->
+            <div *ngIf="!idExist" class="text-error">
+              <div *ngIf="formGroup['controls']['id'].invalid &&
+              (formGroup['controls']['id'].dirty ||
+              formGroup['controls']['id'].touched)" class="text-error">
+                  <div *ngIf="formGroup['controls']['id'].hasError('required') && formGroup['controls']['id'].value == ''">
+                      El id es requerido.
+                  </div>
+                  <div *ngIf="formGroup['controls']['id'].hasError('minlength')">
+                      El id debe de tener como minimo 3 caracteres
+                  </div>
+                  <div *ngIf="formGroup['controls']['id'].hasError('maxlength')">
+                      El id debe de tener como maximo 10 caracteres
+                  </div>
+              </div>
+
+              <div *ngIf="!formGroup['controls']['id'].invalid ||
+              !(formGroup['controls']['id'].dirty &&
+              formGroup['controls']['id'].touched) && formGroup['controls']['id'].value.length>=3" class="text-success">
+                Id no existente
+              </div>
+            </div>
+            <div *ngIf="idExist && !isEdit" class="text-error">
+                El id es repetido
+            </div>
+        </div>
+        <!-- <div *ngIf="myForm.controls['username'].invalid && (myForm.controls['username'].dirty || myForm.controls['username'].touched)" class="alert">
+            <div *ngIf="myForm.controls['username'].errors.required">
+            Please enter username
+          </div>
+        </div> -->
+        <div class="item">
+            <label>Nombre</label>
+            <input formControlName="name" class="input-form" [ngClass]="{'has-error': formGroup['controls']['name'].invalid &&
+            (formGroup['controls']['name'].dirty ||
+            formGroup['controls']['name'].touched)}"/>
+            <div *ngIf="formGroup['controls']['name'].invalid &&
+            (formGroup['controls']['name'].dirty ||
+            formGroup['controls']['name'].touched)" class="text-error">
+                <div *ngIf="formGroup['controls']['name'].hasError('required')">
+                    El nombre es requerido.
+                </div>
+                <div *ngIf="formGroup['controls']['name'].hasError('minlength')">
+                    El nombre debe de tener como minimo 5 caracteres
+                </div>
+                <div *ngIf="formGroup['controls']['name'].hasError('maxlength')">
+                    El nombre debe de tener como maximo 100 caracteres
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-flex">
+        <div class="item">
+            <label>Descripcion</label>
+            <input formControlName="description" class="input-form" [ngClass]="{'has-error': formGroup['controls']['description'].invalid &&
+            (formGroup['controls']['description'].dirty ||
+            formGroup['controls']['description'].touched)}"/>
+            <div *ngIf="formGroup['controls']['description'].invalid &&
+            (formGroup['controls']['description'].dirty ||
+            formGroup['controls']['description'].touched)" class="text-error">
+                <div *ngIf="formGroup['controls']['description'].hasError('required')">
+                    La descripcion es requerida.
+                </div>
+                <div *ngIf="formGroup['controls']['description'].hasError('minlength')">
+                    La descripcion debe de tener como minimo 10 caracteres
+                </div>
+                <div *ngIf="formGroup['controls']['description'].hasError('maxlength')">
+                    La descripcion debe de tener como maximo 200 caracteres
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <label>Logo</label>
+            <input formControlName="logo" class="input-form" [ngClass]="{'has-error': formGroup['controls']['logo'].invalid &&
+            (formGroup['controls']['logo'].dirty ||
+            formGroup['controls']['logo'].touched)}"/>
+            <div *ngIf="formGroup['controls']['logo'].invalid &&
+            (formGroup['controls']['logo'].dirty ||
+            formGroup['controls']['logo'].touched)" class="text-error">
+                <div *ngIf="formGroup['controls']['logo'].hasError('required')">
+                    El logo es requerido.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-flex">
+        <div class="item">
+            <label>Fecha de liberacion</label>
+            <input type="date" formControlName="date_release" class="input-form" [ngClass]="{'has-error': formGroup['controls']['date_release'].invalid &&
+            (formGroup['controls']['date_release'].dirty ||
+            formGroup['controls']['date_release'].touched)}" />
+            <div *ngIf="formGroup['controls']['date_release'].invalid &&
+            (formGroup['controls']['date_release'].dirty ||
+            formGroup['controls']['date_release'].touched)" class="text-error">
+                <div *ngIf="formGroup['controls']['date_release'].hasError('required')">
+                   La fecha de liberacion es requerida.
+                </div>
+                <div *ngIf="formGroup['controls']['date_release'].hasError('invalidRange')">
+                   La fecha debe de ser mayor o igual a la fecha actual
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <label>Fecha de revision</label>
+            <input type="date" formControlName="date_revision" class="input-form" />
+        </div>
+    </div>
+</form>
+
+<div class="container-flex-button">
+    <button class="btn btn-second" (click)="restart()">Reiniciar</button>
+    <button class="btn btn-success" [ngClass]="{'btn-disabled':!formGroup.valid}" (click)="save()" [disabled]="!formGroup.valid">Enviar</button>
+</div>
